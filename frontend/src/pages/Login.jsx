@@ -1,7 +1,15 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useLoginUserMutation } from "../app/services/authService";
+import { toast } from "sonner";
+import { useDispatch } from "react-redux";
+import { setToken } from "../app/slices/authSlice";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [loginUser, { data, isSuccess, isLoading, isError, error }] =
+    useLoginUserMutation();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -18,6 +26,27 @@ const Login = () => {
     handleValidation(formData);
   };
 
+  const handleLogin = async () => {
+    await loginUser({
+      user_name: formData.username,
+      password: formData.password,
+    });
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Logged in successfully.");
+      dispatch(setToken(data.access));
+      navigate("/");
+    } else if (isError) {
+      console.log(error);
+      let message;
+      if (error.data?.detail) message = "Invalid Credentials.";
+      else message = "Error logging in.";
+      toast.error(message);
+    }
+  }, [data, isSuccess, isLoading, isError, error]);
+
   const handleValidation = ({ username, password }) => {
     const errors = {};
     if (!username || username.trim().length === 0)
@@ -25,10 +54,6 @@ const Login = () => {
     if (!password || password.trim().length === 0)
       errors.password = "Password is required.";
     setFormErrors(errors);
-  };
-
-  const handleLogin = () => {
-    console.log(formData);
   };
 
   useEffect(() => {

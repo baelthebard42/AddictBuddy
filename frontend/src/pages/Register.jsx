@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useRegisterUserMutation } from "../app/services/authService";
+import { toast } from "sonner";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const [registerUser, { data, isSuccess, isLoading, isError, error }] =
+    useRegisterUserMutation();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
     confirmPassword: "",
+    addiction: "social",
   });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmited, setIsSubmitted] = useState(false);
@@ -21,9 +27,31 @@ const Register = () => {
     handleValidation(formData);
   };
 
-  const handleRegister = () => {
-    console.log(formData);
+  const handleRegister = async () => {
+    await registerUser({
+      user_name: formData.username,
+      email: formData.email,
+      password: formData.password,
+      type: formData.addiction,
+    });
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("User registered successfully. Proceed to login.");
+      navigate("/login");
+    } else if (isError) {
+      let message;
+      if (error.data.user_name && error.data.email)
+        message = "User with that username & email already exists.";
+      else if (error.data.user_name)
+        message = "User with that username already exists.";
+      else if (error.data.email)
+        message = "User with that email already exists.";
+      else message = "Error creating user.";
+      toast.error(message);
+    }
+  }, [data, isSuccess, isLoading, isError, error]);
 
   const handleValidation = ({ username, email, password, confirmPassword }) => {
     const errors = {};
@@ -133,8 +161,39 @@ const Register = () => {
                   {formErrors.confirmPassword}
                 </p>
               </div>
+              <div className="mt-2">
+                <p className="text-gray-600 font-bold uppercase">
+                  Type of addiction
+                </p>
+                <div className="flex flex-col lg:flex-row lg:justify-between mt-1">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="addiction"
+                      value="social"
+                      defaultChecked
+                      onChange={handleFormData}
+                      className="border border-gray-400 rounded-md"
+                    />{" "}
+                    <span>Social Media</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="addiction"
+                      value="substance"
+                      onChange={handleFormData}
+                      className="border border-gray-400 rounded-md"
+                    />{" "}
+                    <span>Substance Abuse</span>
+                  </div>
+                </div>
+              </div>
               <div className="mt-5">
-                <button className="w-full bg-purple-500 py-3 text-center text-white rounded-md">
+                <button
+                  className="w-full bg-purple-500 py-3 text-center text-white rounded-md"
+                  disabled={isLoading}
+                >
                   Register Now
                 </button>
               </div>

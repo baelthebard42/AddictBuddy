@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import Login from "./pages/Login";
@@ -9,7 +10,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
-const authRouter = createBrowserRouter([
+export const authRouter = createBrowserRouter([
   {
     path: "/",
     element: <Navigate to="/login" />,
@@ -24,13 +25,10 @@ const authRouter = createBrowserRouter([
   },
 ]);
 
-const mainRouter = createBrowserRouter(
+export const mainRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" Component={Layout}>
       <Route index Component={Home}></Route>
     </Route>
   )
 );
-
-const router = authRouter;
-export default router;
