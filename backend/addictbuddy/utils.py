@@ -86,7 +86,7 @@ def chatbot(userID, userInput=''):
     
     if accInstance:
        
-       newAccomplishment=AccomplishmentGenerator(userInput, prevParts=accInstance.content)
+       newAccomplishment=AccomplishmentGenerator(userInput)
 
        if newAccomplishment not in accInstance.content:
         accInstance.content+=(newAccomplishment+'\n')
@@ -111,8 +111,36 @@ def AccomplishmentGenerator(content):
 
     
 
+def RelapseChatBot(userID, userInput=''):
 
-        
+   userObject=User.objects.get(id=userID)
+
+   contextInitial=f"You are a chatbot that is opened only and only when the user feels like he is about to relapse back to his {userObject.type} addiction. Now it's up to you to convince him not to, be strict if need be. Their name is : {userObject.user_name}. Remind them about their streak of {userObject.streak} days, about all the work they put into to become a better person OR Remind them why they quit addiction in the first place OR Tell them how famous historical figures achieved things with patience. Tell them to trust the process. Be persistent and give your best. All they need to do is to not do it till it passes. The temptation is nothing till they don't let yourself to follow it. Generate only 2-5 sentences at once. Always keep a question at the end, keep them talking with you."
+   previousExchange=''
+   
+
+   if not userObject.didChatWithBotToday:
+      accInstance=Accomplishments(user=userObject, day=userObject.streak)
+      accInstance.save()
+   else:
+      accInstance = Accomplishments.objects.get(user=userObject, day=userObject.streak)
+
+   if accInstance.previousExchange2!='':
+
+     previousExchange= 'This was our previous exchange if needed: \n' + accInstance.previousExchange2
+
+   completion = client.chat.completions.create(
+                     model="gpt-3.5-turbo",
+                     messages=[{"role": "system", "content": contextInitial},
+                    {"role": "user", "content": userInput + previousExchange}
+                           ]
+                              )
+   accInstance.previousExchange2 = f'user: {userInput}\n\nchatbot: {completion.choices[0].message.content}'
+   accInstance.save()
+
+   return completion.choices[0].message.content
+
+
 
         
 
