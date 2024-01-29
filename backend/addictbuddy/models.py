@@ -15,4 +15,4 @@ class Accomplishments(models.Model):
     previousExchange=models.TextField(default='')
 
     def __str__(self):
-        return f"{self.user} : Day {self.user.streak}"
+        return f"{self.user} : Day {self.day}"

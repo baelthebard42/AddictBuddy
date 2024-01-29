@@ -52,6 +52,8 @@ def chatbot(userID, userInput=''):
      previousExchange= 'This was our previous exchange if needed: \n' + accInstance.previousExchange
 
     if userInput!='':
+   
+     additionalContext+='No need to welcome them in any way this time, just get to the point directly.'
 
      
 
@@ -67,9 +69,12 @@ def chatbot(userID, userInput=''):
      if len(fields_to_ask_about)!=0:
             random_field, question = random.choice(fields_to_ask_about)
             setattr(accInstance, random_field, True)
-            additionalContext += f"\n\n{question}. "
+            additionalContext += f"\n\n{question}"
 
             accInstance.save()
+   
+    
+
 
     
     completion = client.chat.completions.create(
@@ -80,10 +85,29 @@ def chatbot(userID, userInput=''):
                               )
     
     if accInstance:
+       
+       newAccomplishment=AccomplishmentGenerator(userInput, prevParts=accInstance.content)
+
+       if newAccomplishment not in accInstance.content:
+        accInstance.content+=(newAccomplishment+'\n')
+
        accInstance.previousExchange = f'user: {userInput}\n\nchatbot: {completion.choices[0].message.content}'
        accInstance.save()
     
     return completion.choices[0].message.content
+
+
+def AccomplishmentGenerator(content):
+
+   completion = client.chat.completions.create(
+                     model="gpt-3.5-turbo",
+                     messages=[{"role": "system", "content":f"You are given a bunch of text from the user. Translate it in 2nd person with same exact words, don't change the words please. Add some insights as well, frame it as his accomplishments. Also, ignore the questions, unless it means something related to their addiction. Do not add anything on your own, just translate the content. Generate just one or two sentences. Keep it related to the content. eg: I played guitar becomes You played guitar today. Music really connects you with yourself. "} ,
+                    {"role": "assistant", "content": content}
+                           ]
+                              )
+   return completion.choices[0].message.content
+
+
 
     
 
