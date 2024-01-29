@@ -1,0 +1,4 @@
+run redis at /127.0.0.1:6379 then execute:
+
+celery -A addictbuddy worker --loglevel=info
+celery -A addictbuddy beat --loglevel=info

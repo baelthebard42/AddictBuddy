@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin, Group, Permission
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 
 # Create your models here.
 
@@ -44,9 +46,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff=models.BooleanField(default=False)
     is_active=models.BooleanField(default=True)
     type=models.CharField(max_length=10, choices=types)
-    groups = models.ManyToManyField(Group, related_name='user_groups')
-    user_permissions = models.ManyToManyField(Permission, related_name='user_permissions')
+   
     objects=CustomManager()
+    streak=models.IntegerField(default=0)
+    didChatWithBotToday=models.BooleanField(default=False)
+
+    
 
     
     REQUIRED_FIELDS=['email'] 
@@ -54,3 +59,18 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.user_name
+    
+    def delete(self, *args, **kwargs):
+        # Clear ManyToMany relationships before deletion
+        self.groups.clear()
+        self.user_permissions.clear()
+
+        super().delete(*args, **kwargs)
+
+    
+
+
+
+
+    
+
