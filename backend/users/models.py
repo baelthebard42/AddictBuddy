@@ -41,7 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     types=(('social', 'Social Media'), ('substance', 'Substance Addiction'))
 
-    user_name=models.CharField(max_length=10, unique=True)
+    user_name=models.CharField(max_length=30, unique=True)
     email=models.EmailField(max_length=30, unique=True)
     is_staff=models.BooleanField(default=False)
     is_active=models.BooleanField(default=True)
