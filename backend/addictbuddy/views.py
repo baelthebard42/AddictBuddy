@@ -12,6 +12,6 @@ class buddyAddict(APIView):
     def post(self, request):
 
         userInput=request.data['userInput']
-        userID=request.data['id']
+        userID=request.user.id
         botReply=chatbot(userID=userID, userInput=userInput)
         return JsonResponse({"reply": botReply}, status=200, safe=False)
