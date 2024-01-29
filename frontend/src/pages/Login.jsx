@@ -115,7 +115,10 @@ const Login = () => {
                 </p>
               </div>
               <div className="mt-5">
-                <button className="w-full bg-purple-500 py-3 text-center text-white rounded-md">
+                <button
+                  className="w-full bg-purple-500 py-3 text-center text-white rounded-md"
+                  disabled={isLoading}
+                >
                   Login
                 </button>
               </div>
