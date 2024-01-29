@@ -208,7 +208,7 @@ CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_BEAT_SCHEDULE = {
     'daily_streaks_update': {
         'task': 'addictbuddy.tasks.daily_streaks_update',
-        'schedule': crontab(hour=16, minute=18),  
+        'schedule': crontab(hour=0, minute=0),  
     },
 }
 
