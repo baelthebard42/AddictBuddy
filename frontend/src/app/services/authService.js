@@ -26,7 +26,36 @@ export const authService = createApi({
         body: data,
       }),
     }),
+    logoutUser: builder.mutation({
+      query: (data) => ({
+        headers: {
+          "Content-type": "application/json",
+        },
+        url: "users/logout",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    getUser: builder.query({
+      query: (token) => {
+        if (!token) return {};
+
+        return {
+          headers: {
+            "Content-type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          url: "users/loggedUser",
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
-export const { useRegisterUserMutation, useLoginUserMutation } = authService;
+export const {
+  useRegisterUserMutation,
+  useLoginUserMutation,
+  useLogoutUserMutation,
+  useGetUserQuery,
+} = authService;

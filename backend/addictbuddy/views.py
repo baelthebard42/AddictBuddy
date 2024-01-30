@@ -24,20 +24,17 @@ class OkBuddyAddict(APIView):
 
 class BuddyAddict(OkBuddyAddict):
     def get_bot_reply(self, user_id, user_input):
+        print(user_id, user_input)
         return chatbot(userID=user_id, userInput=user_input)
 
 class RelapseBuddyAddict(OkBuddyAddict):
     def get_bot_reply(self, user_id, user_input):
         return RelapseChatBot(userID=user_id, userInput=user_input)
 
-
-
-
 '''def test(request):
     resp=RelapseChatBot(userID=3, userInput='Me watching my dream going away from me')
     return JsonResponse({"reply": resp}, status=200, safe=False)
 '''
-
 
 class getAllAccomplishments(APIView):
 

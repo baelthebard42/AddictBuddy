@@ -5,7 +5,10 @@ import { useSelector } from "react-redux";
 
 const App = () => {
   const { token } = useSelector((state) => state.authSlice);
-  const router = token ? mainRouter : authRouter;
+  const { user } = useSelector((state) => state.authSlice);
+
+  const router = token && user ? mainRouter : authRouter;
+
   return (
     <>
       <Toaster richColors closeButton />

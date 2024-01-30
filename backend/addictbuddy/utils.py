@@ -71,12 +71,7 @@ def chatbot(userID, userInput=''):
             setattr(accInstance, random_field, True)
             additionalContext += f"\n\n{question}"
 
-            accInstance.save()
-   
-    
-
-
-    
+            accInstance.save()    
     completion = client.chat.completions.create(
                      model="gpt-3.5-turbo",
                      messages=[{"role": "system", "content": contextInitial+additionalContext},
