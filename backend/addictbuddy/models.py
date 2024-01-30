@@ -13,6 +13,7 @@ class Accomplishments(models.Model):
     askedAboutFeelAtthisPoint=models.BooleanField(default=False)
     content=models.TextField()
     previousExchange=models.TextField(default='')
+    previousExchange2=models.TextField(default='')
 
     def __str__(self):
-        return f"{self.user} : Day {self.user.streak}"
+        return f"{self.user} : Day {self.day}"

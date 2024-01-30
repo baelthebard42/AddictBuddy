@@ -1,0 +1,9 @@
+
+
+
+For updating streaks manually use the command:
+py manage.py counter
+
+To start the automation, run the runMe.py file :
+
+

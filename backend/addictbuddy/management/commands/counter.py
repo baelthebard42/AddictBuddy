@@ -1,8 +1,10 @@
 from django.core.management.base import BaseCommand
 from users.models import User
-from datetime import date
+import pycron
+from ...models import Accomplishments
 
 class Command(BaseCommand):
+
     
     help = 'Updates streaks of user based on their activities'
 
@@ -16,8 +18,14 @@ class Command(BaseCommand):
             else:
                 user.streak=0 #reset the streak if user misses a day
 
+                allAcc=Accomplishments.objects.filter(user=user) #deleting all the accomplishments if the streak is missed
+                allAcc.delete()
+
+
             user.save()
         
 
 
         self.stdout.write(self.style.SUCCESS('Successfully updated daily streaks.'))
+
+

@@ -52,6 +52,8 @@ def chatbot(userID, userInput=''):
      previousExchange= 'This was our previous exchange if needed: \n' + accInstance.previousExchange
 
     if userInput!='':
+   
+     additionalContext+='No need to welcome them in any way this time, just get to the point directly.'
 
      
 
@@ -67,9 +69,12 @@ def chatbot(userID, userInput=''):
      if len(fields_to_ask_about)!=0:
             random_field, question = random.choice(fields_to_ask_about)
             setattr(accInstance, random_field, True)
-            additionalContext += f"\n\n{question}. "
+            additionalContext += f"\n\n{question}"
 
             accInstance.save()
+   
+    
+
 
     
     completion = client.chat.completions.create(
@@ -80,15 +85,62 @@ def chatbot(userID, userInput=''):
                               )
     
     if accInstance:
+       
+       newAccomplishment=AccomplishmentGenerator(userInput)
+
+       if newAccomplishment not in accInstance.content:
+        accInstance.content+=(newAccomplishment+'\n')
+
        accInstance.previousExchange = f'user: {userInput}\n\nchatbot: {completion.choices[0].message.content}'
        accInstance.save()
     
     return completion.choices[0].message.content
 
+
+def AccomplishmentGenerator(content):
+
+   completion = client.chat.completions.create(
+                     model="gpt-3.5-turbo",
+                     messages=[{"role": "system", "content":f"You are given a bunch of text from the user. Translate it in 2nd person with same exact words, don't change the words please. Add some insights as well, frame it as his accomplishments. Also, ignore the questions, unless it means something related to their addiction. Do not add anything on your own, just translate the content. Generate just one or two sentences. Keep it related to the content. eg: I played guitar becomes You played guitar today. Music really connects you with yourself. "} ,
+                    {"role": "assistant", "content": content}
+                           ]
+                              )
+   return completion.choices[0].message.content
+
+
+
     
 
+def RelapseChatBot(userID, userInput=''):
 
-        
+   userObject=User.objects.get(id=userID)
+
+   contextInitial=f"You are a chatbot that is opened only and only when the user feels like he is about to relapse back to his {userObject.type} addiction. Now it's up to you to convince him not to, be strict if need be. Their name is : {userObject.user_name}. Remind them about their streak of {userObject.streak} days, about all the work they put into to become a better person OR Remind them why they quit addiction in the first place OR Tell them how famous historical figures achieved things with patience. Tell them to trust the process. Be persistent and give your best. All they need to do is to not do it till it passes. The temptation is nothing till they don't let yourself to follow it. Generate only 2-5 sentences at once. Always keep a question at the end, keep them talking with you."
+   previousExchange=''
+   
+
+   if not userObject.didChatWithBotToday:
+      accInstance=Accomplishments(user=userObject, day=userObject.streak)
+      accInstance.save()
+   else:
+      accInstance = Accomplishments.objects.get(user=userObject, day=userObject.streak)
+
+   if accInstance.previousExchange2!='':
+
+     previousExchange= 'This was our previous exchange if needed: \n' + accInstance.previousExchange2
+
+   completion = client.chat.completions.create(
+                     model="gpt-3.5-turbo",
+                     messages=[{"role": "system", "content": contextInitial},
+                    {"role": "user", "content": userInput + previousExchange}
+                           ]
+                              )
+   accInstance.previousExchange2 = f'user: {userInput}\n\nchatbot: {completion.choices[0].message.content}'
+   accInstance.save()
+
+   return completion.choices[0].message.content
+
+
 
         
 
