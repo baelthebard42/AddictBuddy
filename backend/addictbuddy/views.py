@@ -33,10 +33,10 @@ class RelapseBuddyAddict(OkBuddyAddict):
 
 
 
-'''def test(request):
-    resp=RelapseChatBot(userID=3, userInput='Me watching my dream going away from me')
+def test(request):
+    resp=chatbot(userID=3, userInput='I am designing an AI chat site. I want the section to scroll up when it updates. Can you help me?')
     return JsonResponse({"reply": resp}, status=200, safe=False)
-'''
+
 
 
 class getAllAccomplishments(APIView):
