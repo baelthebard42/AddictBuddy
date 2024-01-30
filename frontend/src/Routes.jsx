@@ -9,6 +9,7 @@ import {
   createRoutesFromElements,
   Navigate,
 } from "react-router-dom";
+import Chat from "./pages/Chat";
 
 export const authRouter = createBrowserRouter([
   {
@@ -29,6 +30,7 @@ export const mainRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" Component={Layout}>
       <Route index Component={Home}></Route>
+      <Route path="/chat" Component={Chat}></Route>
     </Route>
   )
 );

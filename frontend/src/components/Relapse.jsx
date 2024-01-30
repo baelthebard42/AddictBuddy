@@ -1,7 +1,7 @@
 const Relapse = () => {
   return (
-    <div className="fixed bottom-6 right-6">
-      <button className="p-5 bg-red-600 rounded-full">
+    <div className="fixed bottom-6 right-6 max-w-20 flex flex-col justify-center items-center">
+      <button className="p-5 bg-red-600 rounded-full hover:p-6 duration-200">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="28"
