@@ -1,5 +1,8 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
+addictbuddy/__pycache__/
+backend/__pycache__/
+users/__pycache__/
+
 *.py[cod]
 
 # C extensions

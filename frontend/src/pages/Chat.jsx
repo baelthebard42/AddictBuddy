@@ -45,6 +45,10 @@ const Chat = () => {
     }
     setChatLog([...chatLog, { user: "you", message: chatQuery }]);
     setChatQuery("");
+    getMessage();
+  };
+
+  const getMessage = async () => {
     await getReply({
       data: {
         userInput: chatQuery,
@@ -54,8 +58,14 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    if (relapse) setChatLog(relapseConversation);
-    else setChatLog(normalConversation);
+    if (normalConversation.length === 0) getMessage();
+  }, []);
+
+  useEffect(() => {
+    if (relapse) {
+      setChatLog(relapseConversation);
+      getMessage();
+    } else setChatLog(normalConversation);
   }, [relapse]);
 
   useEffect(() => {
@@ -90,7 +100,7 @@ const Chat = () => {
 
   const conversationEl =
     chatLog.length === 0 ? (
-      <p className="text-gray-600 text-center text-xl">
+      <p className="text-gray-600 text-center text-xl py-2">
         Start talking to buddy by sending a message.{" "}
         {relapse
           ? "Conversations in relapse mode are deleted as soon as you turn it off."
@@ -141,7 +151,7 @@ const Chat = () => {
       </div>
       <div
         className={`fixed py-4 bottom-0 left-1/2 -translate-x-1/2 container h-20 ${
-          relapse ? `bg-red-200` : `bg-white`
+          relapse ? `bg-red-100` : `bg-white`
         }`}
       >
         <form onSubmit={handleSubmit}>
@@ -152,7 +162,7 @@ const Chat = () => {
             type="text"
             rows={1}
             className={`${
-              relapse ? `bg-red-100` : `bg-gray-200`
+              relapse ? `bg-red-200` : `bg-gray-200`
             } w-full rounded-md border-none outline-none shadow-md p-3 text-gray-800`}
             placeholder="Type your message here"
           />

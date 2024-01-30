@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import Login from "./pages/Login";
@@ -10,6 +9,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Chat from "./pages/Chat";
+import Accomplishments from "./pages/Accomplishments";
 
 export const authRouter = createBrowserRouter([
   {
@@ -31,6 +31,7 @@ export const mainRouter = createBrowserRouter(
     <Route path="/" Component={Layout}>
       <Route index Component={Home}></Route>
       <Route path="/chat" Component={Chat}></Route>
+      <Route path="/accomplishments" Component={Accomplishments}></Route>
     </Route>
   )
 );

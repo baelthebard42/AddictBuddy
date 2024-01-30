@@ -16,11 +16,11 @@ const Navbar = () => {
           >
             Chat
           </Link>
-          <Link className="mr-8 hover:text-purple-500 uppercase duration-500 font-semibold">
-            Streaks
-          </Link>
-          <Link className="mr-8 hover:text-purple-500 uppercase duration-500 font-semibold">
-            Achievements
+          <Link
+            to="/accomplishments"
+            className="mr-8 hover:text-purple-500 uppercase duration-500 font-semibold"
+          >
+            Accomplishments
           </Link>
           <Logout />
         </nav>

@@ -10,7 +10,7 @@ const Layout = () => {
       {!relapse && <Navbar />}
       <main
         className={`min-h-screen grid place-items-center ${
-          !relapse ? `pt-20` : `bg-red-200`
+          !relapse ? `pt-20` : `bg-red-100`
         }`}
       >
         <Outlet />
