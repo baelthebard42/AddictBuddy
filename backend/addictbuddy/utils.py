@@ -96,7 +96,7 @@ def AccomplishmentGenerator(content):
 
    completion = client.chat.completions.create(
                      model="gpt-3.5-turbo",
-                     messages=[{"role": "system", "content":f"You are given a bunch of text from the user. Translate it in 2nd person with same exact words, don't change the words please. Add some insights as well, frame it as his accomplishments. Also, ignore the questions, unless it means something related to their addiction. Do not add anything on your own, just translate the content. Generate just one or two sentences. Keep it related to the content. eg: I played guitar becomes You played guitar today. Music really connects you with yourself. "} ,
+                     messages=[{"role": "system", "content":f"You are given a bunch of text from the user. Translate it in 2nd person with same exact words, don't change the words please. Add some insights as well, frame it as his accomplishments. Also, if it is a question then just add 'You asked' and then put the question, don't translate. Do not add anything on your own, just translate the content. Generate just one or two sentences. Keep it related to the content. eg: I played guitar becomes You played guitar today. Music really connects you with yourself. "} ,
                     {"role": "assistant", "content": content}
                            ]
                               )
