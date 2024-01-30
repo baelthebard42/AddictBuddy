@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import {
   useGetNormalReplyMutation,
   useGetRelapseReplyMutation,
-} from "../app/services/chatService";
+} from "../redux/services/botService";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,7 +10,7 @@ import {
   relapseOff,
   setNormalConversation,
   setRelapseConversation,
-} from "../app/slices/conversationSlice";
+} from "../redux/slices/conversationSlice";
 
 const Chat = () => {
   const dispatch = useDispatch();
@@ -101,7 +101,6 @@ const Chat = () => {
   const conversationEl =
     chatLog.length === 0 ? (
       <p className="text-gray-600 text-center text-xl py-2">
-        Start talking to buddy by sending a message.{" "}
         {relapse
           ? "Conversations in relapse mode are deleted as soon as you turn it off."
           : "Don't worry, your conversations are deleted as soon as you log out."}

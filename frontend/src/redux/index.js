@@ -2,19 +2,19 @@ import { configureStore } from "@reduxjs/toolkit";
 import { authService } from "./services/authService";
 import authSlice from "./slices/authSlice";
 import conversationSlice from "./slices/conversationSlice";
-import { chatService } from "./services/chatService";
+import { botService } from "./services/botService";
 
 const Store = configureStore({
   reducer: {
     [authService.reducerPath]: authService.reducer,
     authSlice,
-    [chatService.reducerPath]: chatService.reducer,
+    [botService.reducerPath]: botService.reducer,
     conversationSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(authService.middleware)
-      .concat(chatService.middleware),
+      .concat(botService.middleware),
 });
 
 export default Store;

@@ -23,7 +23,7 @@ const Home = () => {
             <div className="flex justify-center">
               <Link to="/chat">
                 <button className="inline-flex text-white bg-purple-500 uppercase font-semibold border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">
-                  Talk more
+                  Talk
                 </button>
               </Link>
               <button className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0 py-2 uppercase font-semibold px-6 focus:outline-none hover:bg-gray-300 rounded text-lg">
@@ -51,12 +51,14 @@ const Home = () => {
             <div className="flex justify-center">
               <Link to="/chat">
                 <button className="inline-flex text-white bg-purple-500 uppercase font-semibold border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">
-                  Start Talking
+                  Talk
                 </button>
               </Link>
-              <button className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0 py-2 uppercase font-semibold px-6 focus:outline-none hover:bg-gray-300 rounded text-lg">
-                Accomplishments
-              </button>
+              <Link to="/accomplishments">
+                <button className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0 py-2 uppercase font-semibold px-6 focus:outline-none hover:bg-gray-300 rounded text-lg">
+                  Accomplishments
+                </button>
+              </Link>
             </div>
           </div>
         </div>

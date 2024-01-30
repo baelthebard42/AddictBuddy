@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useRegisterUserMutation } from "../app/services/authService";
+import { useRegisterUserMutation } from "../redux/services/authService";
 import { toast } from "sonner";
 
 const Register = () => {

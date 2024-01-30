@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { relapseOff, relapseOn } from "../app/slices/conversationSlice";
+import { relapseOff, relapseOn } from "../redux/slices/conversationSlice";
 import { useNavigate } from "react-router-dom";
 
 const Relapse = () => {

@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { removeToken } from "../app/slices/authSlice";
-import { useLogoutUserMutation } from "../app/services/authService";
+import { removeToken } from "../redux/slices/authSlice";
+import { useLogoutUserMutation } from "../redux/services/authService";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import {
   deleteNormalConversation,
   deleteRelapseConversation,
-} from "../app/slices/conversationSlice";
+} from "../redux/slices/conversationSlice";
 
 const Logout = () => {
   const { token } = useSelector((state) => state.authSlice);
