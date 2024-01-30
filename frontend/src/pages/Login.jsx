@@ -1,15 +1,22 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useLoginUserMutation } from "../app/services/authService";
+import {
+  useGetUserQuery,
+  useLoginUserMutation,
+} from "../app/services/authService";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
-import { setToken } from "../app/slices/authSlice";
+import { setToken, setUser } from "../app/slices/authSlice";
+import { skipToken } from "@reduxjs/toolkit/query";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [loginUser, { data, isSuccess, isLoading, isError, error }] =
-    useLoginUserMutation();
+  const [loginUser, loginResponse] = useLoginUserMutation();
+  const getUserResponse = useGetUserQuery(
+    loginResponse?.data?.access ?? skipToken
+  );
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -34,18 +41,44 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (isSuccess) {
+    if (loginResponse.isSuccess) {
       toast.success("Logged in successfully.");
-      dispatch(setToken(data.access));
-      navigate("/");
-    } else if (isError) {
-      console.log(error);
+    } else if (loginResponse.isError) {
       let message;
-      if (error.data?.detail) message = "Invalid Credentials.";
+      if (loginResponse.error.data?.detail) message = "Invalid Credentials.";
       else message = "Error logging in.";
       toast.error(message);
     }
-  }, [data, isSuccess, isLoading, isError, error]);
+  }, [
+    loginResponse.data,
+    loginResponse.isSuccess,
+    loginResponse.isLoading,
+    loginResponse.isError,
+    loginResponse.error,
+  ]);
+
+  useEffect(() => {
+    if (getUserResponse.isUninitialized) return;
+    if (getUserResponse.isSuccess) {
+      dispatch(
+        setToken({
+          access: loginResponse.data.access,
+          refresh: loginResponse.data.refresh,
+        })
+      );
+      dispatch(setUser(getUserResponse.data));
+      navigate("/");
+    } else if (getUserResponse.isError) {
+      toast.error("Error getting user.");
+    }
+  }, [
+    getUserResponse.isUninitialized,
+    getUserResponse.data,
+    getUserResponse.isSuccess,
+    getUserResponse.isLoading,
+    getUserResponse.isError,
+    getUserResponse.error,
+  ]);
 
   const handleValidation = ({ username, password }) => {
     const errors = {};
@@ -117,7 +150,7 @@ const Login = () => {
               <div className="mt-5">
                 <button
                   className="w-full bg-purple-500 py-3 text-center text-white rounded-md"
-                  disabled={isLoading}
+                  disabled={loginResponse.isLoading}
                 >
                   Login
                 </button>

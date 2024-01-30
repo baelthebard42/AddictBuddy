@@ -14,11 +14,8 @@ class UserCreate(generics.ListCreateAPIView):
     queryset=User.objects.all()
     serializer_class=UserSerializer
 
-
 class LogOut(APIView):
-
-    def post(request):
-     
+    def post(self, request): 
      try:
         refresh=request.data['refresh_token']
         instance=RefreshToken(refresh)

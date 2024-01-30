@@ -4,17 +4,17 @@ import Logout from "./Logout";
 
 const Navbar = () => {
   return (
-    <header className="text-gray-600 body-font h-20 shadow-md w-full fixed z-10 bg-white">
-      <div className="lg:container mx-auto flex flex-wrap p-5 items-center">
+    <header className="text-gray-600 body-font h-16 xs:h-20 shadow-md w-full fixed z-10 bg-white">
+      <div className="container mx-auto flex flex-wrap p-5 justify-center items-center">
         <Link>
           <Logo />
         </Link>
         <nav className="md:ml-auto flex-wrap items-center text-base justify-center hidden md:flex">
           <Link
-            to="/"
+            to="/chat"
             className="mr-8 hover:text-purple-500 uppercase duration-500 font-semibold"
           >
-            Home
+            Chat
           </Link>
           <Link className="mr-8 hover:text-purple-500 uppercase duration-500 font-semibold">
             Streaks
