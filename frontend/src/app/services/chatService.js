@@ -19,7 +19,20 @@ export const chatService = createApi({
         };
       },
     }),
+    getRelapseReply: builder.mutation({
+      query: ({ data, token }) => {
+        return {
+          headers: {
+            "Content-type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          url: "relapseBotReply",
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetNormalReplyMutation } = chatService;
+export const { useGetNormalReplyMutation, useGetRelapseReplyMutation } = chatService;

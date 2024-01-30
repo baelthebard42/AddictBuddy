@@ -1,7 +1,23 @@
+import { useDispatch, useSelector } from "react-redux";
+import { relapseOff, relapseOn } from "../app/slices/conversationSlice";
+import { useNavigate } from "react-router-dom";
+
 const Relapse = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { relapse } = useSelector((state) => state.conversationSlice);
+  const handleRelapse = () => {
+    dispatch(relapseOn());
+    navigate("/chat");
+  };
   return (
     <div className="fixed bottom-6 right-6 max-w-20 flex flex-col justify-center items-center">
-      <button className="p-5 bg-red-600 rounded-full hover:p-6 duration-200">
+      <button
+        className={`p-5 ${
+          relapse ? `hidden` : ` block`
+        } rounded-full hover:p-6 duration-200 bg-red-600`}
+        onClick={handleRelapse}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="28"

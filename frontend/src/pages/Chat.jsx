@@ -1,19 +1,41 @@
 import { useState, useEffect, useRef } from "react";
-import { useGetNormalReplyMutation } from "../app/services/chatService";
+import {
+  useGetNormalReplyMutation,
+  useGetRelapseReplyMutation,
+} from "../app/services/chatService";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
-import { setConversation } from "../app/slices/conversationSlice";
+import {
+  deleteRelapseConversation,
+  relapseOff,
+  setNormalConversation,
+  setRelapseConversation,
+} from "../app/slices/conversationSlice";
 
 const Chat = () => {
   const dispatch = useDispatch();
+  const { relapse } = useSelector((state) => state.conversationSlice);
   const lastMessageRef = useRef(null);
   const { token } = useSelector((state) => state.authSlice);
-  const { conversation } = useSelector((state) => state.conversationSlice);
+  const { normalConversation } = useSelector(
+    (state) => state.conversationSlice
+  );
+  const { relapseConversation } = useSelector(
+    (state) => state.conversationSlice
+  );
   const [chatQuery, setChatQuery] = useState("");
-  const [chatLog, setChatLog] = useState(conversation);
+  const [chatLog, setChatLog] = relapse
+    ? useState(relapseConversation)
+    : useState(normalConversation);
 
-  const [getNormalReply, { data, isSuccess, isLoading, isError, error }] =
-    useGetNormalReplyMutation();
+  let [getReply, { data, isSuccess, isLoading, isError, error }] = relapse
+    ? useGetRelapseReplyMutation()
+    : useGetNormalReplyMutation();
+
+  const handleNormal = () => {
+    dispatch(relapseOff());
+    dispatch(deleteRelapseConversation());
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +45,7 @@ const Chat = () => {
     }
     setChatLog([...chatLog, { user: "you", message: chatQuery }]);
     setChatQuery("");
-    await getNormalReply({
+    await getReply({
       data: {
         userInput: chatQuery,
       },
@@ -32,10 +54,23 @@ const Chat = () => {
   };
 
   useEffect(() => {
+    if (relapse) setChatLog(relapseConversation);
+    else setChatLog(normalConversation);
+  }, [relapse]);
+
+  useEffect(() => {
     if (isSuccess) {
       setChatLog([...chatLog, { user: "buddy", message: data.reply }]);
       dispatch(
-        setConversation([...chatLog, { user: "buddy", message: data.reply }])
+        relapse
+          ? setRelapseConversation([
+              ...chatLog,
+              { user: "buddy", message: data.reply },
+            ])
+          : setNormalConversation([
+              ...chatLog,
+              { user: "buddy", message: data.reply },
+            ])
       );
     } else if (isError) {
       toast.error(
@@ -56,13 +91,18 @@ const Chat = () => {
   const conversationEl =
     chatLog.length === 0 ? (
       <p className="text-gray-600 text-center text-xl">
-        Start talking to buddy by sending a message.
+        Start talking to buddy by sending a message.{" "}
+        {relapse
+          ? "Conversations in relapse mode are deleted as soon as you turn it off."
+          : "Don't worry, your conversations are deleted as soon as you log out."}
       </p>
     ) : (
       chatLog.map(({ user, message }, index) => (
         <div
           key={index}
-          className={`py-6 flex ${user === "buddy" ? `bg-purple-200` : ``} `}
+          className={`py-6 flex ${
+            user === "buddy" ? (relapse ? `bg-red-300` : `bg-purple-200`) : ``
+          } `}
         >
           <div className="uppercase font-bold w-24 pl-10 text-center">
             {user}
@@ -74,10 +114,23 @@ const Chat = () => {
 
   return (
     <section className="container text-gray-900">
+      {relapse && (
+        <div className="fixed top-0 left-0 w-full h-10 bg-red-500 flex justify-center items-center">
+          <p className="text-white font-semibold uppercase">Relapse Mode</p>
+          <button
+            className="ml-4 inline-flex text-gray-800 bg-white border-0 py-1 uppercase font-semibold px-2 focus:outline-none hover:bg-gray-200 rounded"
+            onClick={handleNormal}
+          >
+            Turn off
+          </button>
+        </div>
+      )}
       <div className="py-3 text-left flex flex-col pb-20">
         {conversationEl}
         {isLoading && (
-          <div className="py-6 flex bg-purple-200">
+          <div
+            className={`py-6 flex ${relapse ? `bg-red-300` : `bg-purple-200`}`}
+          >
             <div className="uppercase font-bold w-24 pl-10 text-center">
               Buddy
             </div>
@@ -86,7 +139,11 @@ const Chat = () => {
         )}
         <div ref={lastMessageRef} />
       </div>
-      <div className="fixed py-4 bottom-0 left-1/2 -translate-x-1/2 container h-20 bg-white">
+      <div
+        className={`fixed py-4 bottom-0 left-1/2 -translate-x-1/2 container h-20 ${
+          relapse ? `bg-red-200` : `bg-white`
+        }`}
+      >
         <form onSubmit={handleSubmit}>
           <input
             disabled={isLoading}
@@ -94,7 +151,9 @@ const Chat = () => {
             onChange={(e) => setChatQuery(e.target.value)}
             type="text"
             rows={1}
-            className="bg-gray-200 w-full rounded-md border-none outline-none shadow-md p-3 text-gray-800"
+            className={`${
+              relapse ? `bg-red-100` : `bg-gray-200`
+            } w-full rounded-md border-none outline-none shadow-md p-3 text-gray-800`}
             placeholder="Type your message here"
           />
         </form>

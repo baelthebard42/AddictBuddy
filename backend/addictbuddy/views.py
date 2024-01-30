@@ -24,7 +24,6 @@ class OkBuddyAddict(APIView):
 
 class BuddyAddict(OkBuddyAddict):
     def get_bot_reply(self, user_id, user_input):
-        print(user_id, user_input)
         return chatbot(userID=user_id, userInput=user_input)
 
 class RelapseBuddyAddict(OkBuddyAddict):
