@@ -2,6 +2,7 @@
 addictbuddy/__pycache__/
 backend/__pycache__/
 users/__pycache__/
+db.sqlite3
 
 *.py[cod]
 
