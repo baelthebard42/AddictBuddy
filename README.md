@@ -39,8 +39,9 @@ Recovering from addiction requires commitment and that is exactly what we're try
 # Running the application
 
 To run the app, first clone out repository.
+`git clone https://github.com/baelthebard42/AddictBuddy.git`
 
-Install the required files using commands:
+Go to the repository and install the required files using commands:
 
 
 ```
@@ -55,14 +56,16 @@ pip install -r requirements.txt
 Run backend server by the command:
 
 ```
-py manage.py runserver```
+py manage.py runserver
+```
 
 Start the application by:
 
 ```
 cd ..
 cd frontend
-npm run dev```
+npm run dev
+```
 
 To update all the user streaks manually, use command:
 
