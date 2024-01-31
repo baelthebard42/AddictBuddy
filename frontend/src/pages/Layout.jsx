@@ -1,10 +1,14 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Relapse from "../components/Relapse";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { toast } from "sonner";
 
 const Layout = () => {
   const { relapse } = useSelector((state) => state.conversationSlice);
+  const { token } = useSelector((state) => state.authSlice);
+
   return (
     <div>
       {!relapse && <Navbar />}
@@ -13,7 +17,7 @@ const Layout = () => {
           !relapse ? `pt-20` : `bg-red-100`
         }`}
       >
-        <Outlet />
+        {token ? <Outlet /> : <Navigate to="/" />}
       </main>
       <Relapse />
     </div>

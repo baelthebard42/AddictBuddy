@@ -1,15 +1,31 @@
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useGetUserQuery } from "../redux/services/authService";
+import { useEffect } from "react";
+import { setUser } from "../redux/slices/authSlice";
+import { toast } from "sonner";
 
 const Home = () => {
-  const { user } = useSelector((state) => state.authSlice);
+  const dispatch = useDispatch();
+  const { data, isLoading, isError, error, isSuccess } = useGetUserQuery("", {
+    refetchOnMountOrArgChange: true,
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setUser(data));
+    } else if (isError) {
+      toast.error("Error getting user.");
+    }
+  }, [data, isSuccess, isLoading, isError, error]);
+
   return (
     <section className="text-gray-600 body-font min-h-full flex items-center">
-      {user.streak !== 0 && (
+      {data?.streak !== 0 && (
         <div className="container mx-auto flex px-5 items-center justify-center flex-col">
           <div className="flex items-center leading-[14rem] text-black">
             <span className="text-7xl">&#x1F525;</span>
-            <span className="text-[12rem]">{user.streak}</span>
+            <span className="text-[12rem]">{data?.streak}</span>
             <span className="text-7xl">&#x1F525;</span>
           </div>
           <div className="text-center lg:w-3/4 w-full">
@@ -17,7 +33,7 @@ const Home = () => {
               Daily Chat Streak
             </h1>
             <p className="mb-8 leading-relaxed">
-              It has been {user.streak} days since you have talked with your
+              It has been {data?.streak} days since you have talked with your
               buddy, daily.
             </p>
             <div className="flex justify-center">
@@ -33,11 +49,11 @@ const Home = () => {
           </div>
         </div>
       )}
-      {user.streak === 0 && (
+      {data?.streak === 0 && (
         <div className="container mx-auto flex px-5 items-center justify-center flex-col">
           <div className="flex items-center leading-[14rem] text-black">
             <span className="text-3xl pr-2">&#x1F622;</span>
-            <span className="text-[12rem]">{user.streak}</span>
+            <span className="text-[12rem]">{data?.streak}</span>
             <span className="text-3xl pl-2">&#x1F622;</span>
           </div>
           <div className="text-center lg:w-3/4 w-full">

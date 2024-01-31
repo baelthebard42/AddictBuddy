@@ -16,7 +16,6 @@ const Chat = () => {
   const dispatch = useDispatch();
   const { relapse } = useSelector((state) => state.conversationSlice);
   const lastMessageRef = useRef(null);
-  const { token } = useSelector((state) => state.authSlice);
   const { normalConversation } = useSelector(
     (state) => state.conversationSlice
   );
@@ -50,10 +49,7 @@ const Chat = () => {
 
   const getMessage = async () => {
     await getReply({
-      data: {
-        userInput: chatQuery,
-      },
-      token: token.access,
+      userInput: chatQuery,
     });
   };
 

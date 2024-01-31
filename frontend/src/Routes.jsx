@@ -13,7 +13,7 @@ import Accomplishments from "./pages/Accomplishments";
 
 export const authRouter = createBrowserRouter([
   {
-    path: "/",
+    path: "*",
     element: <Navigate to="/login" />,
   },
   {
@@ -32,6 +32,7 @@ export const mainRouter = createBrowserRouter(
       <Route index Component={Home}></Route>
       <Route path="/chat" Component={Chat}></Route>
       <Route path="/accomplishments" Component={Accomplishments}></Route>
+      <Route path="*" element={<Navigate to="/" />} />
     </Route>
   )
 );

@@ -11,7 +11,7 @@ const Relapse = () => {
     navigate("/chat");
   };
   return (
-    <div className="fixed bottom-6 right-6 max-w-20 flex flex-col justify-center items-center">
+    <div className="fixed bottom-12 right-6 max-w-20 flex flex-col justify-center items-center">
       <button
         className={`p-5 ${
           relapse ? `hidden` : ` block`
