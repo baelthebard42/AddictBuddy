@@ -40,21 +40,31 @@ Recovering from addiction requires commitment and that is exactly what we're try
 
 To run the app, first clone out repository.
 
-Install the required files using:
+Install the required files using commands:
 
-`pip install -r requirements.txt` 
 
-`npm install`
+```
+cd frontend
+npm install
+cd ..
+cd backend
+pip install -r requirements.txt
+```
+
 
 Run backend server by the command:
 
-`py manage.py runserver`
+```
+py manage.py runserver```
 
 Start the application by:
 
-`npm run dev`
+```
+cd ..
+cd frontend
+npm run dev```
 
-To update all the streaks manually, use command:
+To update all the user streaks manually, use command:
 
 `py manage.py counter`
 
