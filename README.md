@@ -27,5 +27,36 @@ AddictBuddy is an AI powered web platform designed to get track your two major t
 
     You and only you will have access to your accomplishments.
 
-3. **Buddy has a relapse mode** : 
+3. **Buddy has a relapse mode** : It is common for recovering addicts to fall back to their usual ways at minor inconveniences. So, Buddy has a relapse mode to be used if the users get a sign that they are having a relapse. This mode forces user to think for themselves with triggering responses.
+
+
+
+4. **Streak maintainence** : To make sure the users visit Buddy daily, there is a streak feature. The higher the streak, more progress and accomplishments and more Buddy knows you. Streaks are updated at midnight on basis of the user had chatted with Buddy previous day or not. So, just logging in is not enough, the user must chat with Buddy atleast once a day. If streak is missed, it is set back to 0 and all previous accomplishments i.e the journals are deleted. 
+
+Recovering from addiction requires commitment and that is exactly what we're trying to teach here.
+
+
+# Running the application
+
+To run the app, first clone out repository.
+
+Install the required files using:
+
+`pip install -r requirements.txt` 
+
+`npm install`
+
+Run backend server by the command:
+
+`py manage.py runserver`
+
+Start the application by:
+
+`npm run dev`
+
+To update all the streaks manually, use command:
+
+`py manage.py counter`
+
+To automate the process, just run the runMe.py file. Make sure it runs the whole time.
 
