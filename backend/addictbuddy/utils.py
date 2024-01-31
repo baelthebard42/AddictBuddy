@@ -3,7 +3,7 @@ import random
 from .models import Accomplishments
 from users.models import User
 
-API_KEY="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"
+API_KEY="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"
 
 client=OpenAI(api_key=API_KEY)
 
@@ -75,11 +75,12 @@ def chatbot(userID, userInput=''):
     completion = client.chat.completions.create(
                      model="gpt-3.5-turbo",
                      messages=[{"role": "system", "content": contextInitial+additionalContext},
-                    {"role": "user", "content": userInput+previousExchange}
+                    {"role": "user", "content": userInput},
+                    {"role":"assistant", "content":previousExchange, }
                            ]
                               )
     
-    if accInstance:
+    if accInstance and userInput!='':
        
        newAccomplishment=AccomplishmentGenerator(userInput)
 
@@ -96,8 +97,8 @@ def AccomplishmentGenerator(content):
 
    completion = client.chat.completions.create(
                      model="gpt-3.5-turbo",
-                     messages=[{"role": "system", "content":f"You are given a bunch of text from the user. Translate it in 2nd person with same exact words, don't change the words please. Add some insights as well, frame it as his accomplishments. Also, if it is a question then just add 'You asked' and then put the question, don't translate. Do not add anything on your own, just translate the content. Generate just one or two sentences. Keep it related to the content. eg: I played guitar becomes You played guitar today. Music really connects you with yourself. "} ,
-                    {"role": "assistant", "content": content}
+                     messages=[{"role": "system", "content":f"You are an Accomplishment generator bot for a recovering addict. A text is given to you by user. You just need to return the text in 2nd person by framing it as an accomplishment. Do not add or say anything else. Use very very positive words and add a positive insight on the text if needed. If the text given to you is a question then add 'You asked' and then put the question and return it. If the text given to you is too negative and consists of dark thoughts of the user, return 'You were vunerable today and shared some dark thoughts, but you would fight back against it as you always did. '"} ,
+                    {"role": "user", "content": content}
                            ]
                               )
    return completion.choices[0].message.content
@@ -110,7 +111,7 @@ def RelapseChatBot(userID, userInput=''):
 
    userObject=User.objects.get(id=userID)
 
-   contextInitial=f"You are a chatbot that is opened only and only when the user feels like he is about to relapse back to his {userObject.type} addiction. Now it's up to you to convince him not to, be strict if need be. Their name is : {userObject.user_name}. Remind them about their streak of {userObject.streak} days, about all the work they put into to become a better person OR Remind them why they quit addiction in the first place OR Tell them how famous historical figures achieved things with patience. Tell them to trust the process. Be persistent and give your best. All they need to do is to not do it till it passes. The temptation is nothing till they don't let yourself to follow it. Generate only 2-5 sentences at once. Always keep a question at the end, keep them talking with you."
+   contextInitial=f"You are a chatbot that is talking to a user who feels like he is about to relapse back to his {userObject.type} addiction. Now it's up to you to convince him not to by reading the content given by the user and replying to it, be strict if need be. Their name is : {userObject.user_name}. Remind them about their streak of {userObject.streak} days, about all the work they put into to become a better person OR Remind them why they quit addiction in the first place OR Tell them how famous historical figures achieved things with patience. Tell them to trust the process. Be persistent and give your best. All they need to do is to not do it till it passes. The temptation is nothing till they don't let yourself to follow it. Generate only 2-5 sentences at once, answer their questions. Always keep a question at the end, keep them talking with you."
    previousExchange=''
    
 
@@ -120,16 +121,24 @@ def RelapseChatBot(userID, userInput=''):
    else:
       accInstance = Accomplishments.objects.get(user=userObject, day=userObject.streak)
 
-   if accInstance.previousExchange2!='':
+   if accInstance.previousExchange2!='' and userInput!='':
 
-     previousExchange= 'This was our previous exchange if needed: \n' + accInstance.previousExchange2
+     previousExchange= 'This was our previous exchange if needed. Build up the conversation on basis of this (dont say anything about this to user, just use it for gaining context): \n ' + accInstance.previousExchange2
 
+   
+   
+
+   if userInput=='':
+      userInput==f'Help me. I am tempted to go back to my {userObject} addiction'
    completion = client.chat.completions.create(
                      model="gpt-3.5-turbo",
                      messages=[{"role": "system", "content": contextInitial},
-                    {"role": "user", "content": userInput + previousExchange}
+                    {"role": "user", "content": userInput },
+                    {"role":"assistant", "content": previousExchange}
+                       
                            ]
                               )
+   
    accInstance.previousExchange2 = f'user: {userInput}\n\nchatbot: {completion.choices[0].message.content}'
    accInstance.save()
 
