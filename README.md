@@ -31,14 +31,22 @@ AddictBuddy is an AI powered web platform designed to get track your two major t
 
 
 
-4. **Streak maintainence** : To make sure the users visit Buddy daily, there is a streak feature. The higher the streak, more progress and accomplishments and more Buddy knows you. Streaks are updated at midnight on basis of the user had chatted with Buddy previous day or not. So, just logging in is not enough, the user must chat with Buddy atleast once a day. If streak is missed, it is set back to 0 and all previous accomplishments i.e the journals are deleted. 
+4. **Streak maintainence** : To make sure the users visit Buddy daily, there is a streak feature. The higher the streak, more progress and accomplishments and more Buddy knows you. Missing a streak results in it's
+   reset and deletion of all the accomplishments thus far.
 
 Recovering from addiction requires commitment and that is exactly what we're trying to teach here.
 
 
 # Running the application
 
-To run the app, first clone out repository.
+## Prerequisites
+
+Make sure you have Node installed in your system. You can get it from node.js. Also, make sure you have Python installed. 
+
+## Setup
+
+
+ Clone out repository.
 `git clone https://github.com/baelthebard42/AddictBuddy.git`
 
 Go to the repository and install the required files using commands:
@@ -52,7 +60,7 @@ cd backend
 pip install -r requirements.txt
 ```
 
-
+## Starting the app
 Run backend server by the command:
 
 ```
@@ -72,4 +80,9 @@ To update all the user streaks manually, use command:
 `py manage.py counter`
 
 To automate the process, just run the runMe.py file. Make sure it runs the whole time.
+
+# Dependencies
+
+• OpenAI API
+• Other dependencies listed in requirements.txt and package.json
 
