@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   useGetUserQuery,
   useLoginUserMutation,
-} from "../app/services/authService";
+} from "../redux/services/authService";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
-import { setToken, setUser } from "../app/slices/authSlice";
+import { setToken, setUser } from "../redux/slices/authSlice";
 import { skipToken } from "@reduxjs/toolkit/query";
 
 const Login = () => {
