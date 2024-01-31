@@ -50,3 +50,4 @@ coverage.xml
 *.pot
 
 venv
+db.sqlite3
