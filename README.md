@@ -83,6 +83,7 @@ To automate the process, just run the runMe.py file. Make sure it runs the whole
 
 # Dependencies
 
-• OpenAI API
-• Other dependencies listed in requirements.txt and package.json
+1. OpenAI API
+2. Other dependencies listed in requirements.txt and package.json
+
 
