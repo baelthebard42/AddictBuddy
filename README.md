@@ -42,6 +42,14 @@ Recovering from addiction requires commitment and that is exactly what we're try
 
 ![Buddy, Streak](https://cdn.discordapp.com/attachments/1010884441478025318/1202303283922997288/image.png?ex=65ccf730&is=65ba8230&hm=228c26766104db62127146a802ae4e0e6061d01e55bfdc183a3d94a986745de8&)
 
+# Demo
+
+
+https://github.com/baelthebard42/AddictBuddy/assets/105338372/7ed6eb60-eeea-4539-8e6e-cb6c2cfb66a6
+
+
+
+
 # Running the application
 
 ## Prerequisites
@@ -57,6 +65,8 @@ Make sure you have Node installed in your system. You can get it from node.js. A
 Go to the repository and install the required files using commands:
 
 
+
+
 ```
 cd frontend
 npm install
@@ -64,6 +74,16 @@ cd ..
 cd backend
 pip install -r requirements.txt
 ```
+
+## Adding your OpenAI API Key
+
+This project is powered by OpenAI's API. To use it, you shall need a key which you can get from platform.openai.com by creating an account. It's free for first three months.
+
+Once you get the key, create a .env file inside backend directory and add:
+
+`API_KEY= " YOU API KEY HERE "`
+
+Then save it. You should be good to go.
 
 ## Starting the app
 Run backend server by the command:
