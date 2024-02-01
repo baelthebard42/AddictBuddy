@@ -2,8 +2,12 @@ from openai import OpenAI
 import random
 from .models import Accomplishments
 from users.models import User
+from dotenv import load_dotenv
+import os
 
-API_KEY="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"
+load_dotenv()
+
+API_KEY=os.environ.get("API_KEY")
 
 client=OpenAI(api_key=API_KEY)
 

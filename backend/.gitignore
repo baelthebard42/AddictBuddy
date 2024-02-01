@@ -52,3 +52,4 @@ coverage.xml
 
 venv
 db.sqlite3
+.env
