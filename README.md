@@ -91,4 +91,8 @@ To automate the process, just run the runMe.py file. Make sure it runs the whole
 1. OpenAI API
 2. Other dependencies listed in requirements.txt and package.json
 
+# Contribution
+
+Feel free to contribute to the project by submitting pull requests !!
+
 
