@@ -83,7 +83,7 @@ const Chat = () => {
         "Error getting buddy's reply in. Please send the message again."
       );
       setChatLog((prevChatLog) => {
-        prevChatLog.pop();
+        if(prevChatLog.length > 0) prevChatLog.pop();
         return prevChatLog;
       });
     }
