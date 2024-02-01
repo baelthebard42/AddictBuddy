@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { removeToken } from "../redux/slices/authSlice";
+import { removeToken, removeUser } from "../redux/slices/authSlice";
 import { useLogoutUserMutation } from "../redux/services/authService";
 import { useEffect } from "react";
 import { toast } from "sonner";
@@ -18,13 +18,14 @@ const Logout = () => {
 
   const handleLogout = async () => {
     await logoutUser({
-      refresh_token: token.refresh,
+      refresh_token: token?.refresh,
     });
   };
 
   useEffect(() => {
     if (isSuccess) {
       dispatch(removeToken());
+      dispatch(removeUser());
       dispatch(deleteNormalConversation());
       dispatch(deleteRelapseConversation());
       navigate("/");

@@ -1,45 +1,32 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-const baseUrl = "http://127.0.0.1:8000/buddy";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQueryWithReauth } from "./apiService";
 
 export const botService = createApi({
   reducerPath: "botService",
-  baseQuery: fetchBaseQuery({ baseUrl }),
+  baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
     getNormalReply: builder.mutation({
-      query: ({ data, token }) => {
+      query: (data) => {
         return {
-          headers: {
-            "Content-type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-          url: "botReply",
+          url: "buddy/botReply",
           method: "POST",
           body: data,
         };
       },
     }),
     getRelapseReply: builder.mutation({
-      query: ({ data, token }) => {
+      query: (data) => {
         return {
-          headers: {
-            "Content-type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-          url: "relapseBotReply",
+          url: "buddy/relapseBotReply",
           method: "POST",
           body: data,
         };
       },
     }),
     getAllAccomplishments: builder.query({
-      query: (token) => {
+      query: () => {
         return {
-          headers: {
-            "Content-type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-          url: "getAcc",
+          url: "buddy/getAcc",
           method: "GET",
         };
       },
