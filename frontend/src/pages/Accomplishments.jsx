@@ -14,7 +14,7 @@ const Accomplishments = () => {
   }, [data, isLoading, isSuccess, isError, error]);
 
   const accomplishmentsEl =
-    data && (data[0].content === "" || data.length === 0) ? (
+    data && ( data.length === 0 ||   data[0].content === "") ? (
       <p className="text-gray-600 text-center text-xl py-2">
         No accomplishments yet. Chat with buddy to get them.
       </p>
