@@ -42,7 +42,8 @@ AddictBuddy is an AI powered web platform designed to get track your two major t
 4. **Streak maintainence** : To make sure the users visit Buddy daily, there is a streak feature. The higher the streak, more progress and accomplishments and more Buddy knows you. Missing a streak results in it's
    reset and deletion of all the accomplishments thus far.
 
-   ![Screenshot 2024-02-18 223834](https://github.com/baelthebard42/AddictBuddy/assets/105338372/75ac8066-d121-49dd-8e05-1cf7fe594fee)
+   
+  ![Screenshot 2024-02-18 223740](https://github.com/baelthebard42/AddictBuddy/assets/105338372/37423702-9763-471f-8291-4a7391e84f9e)
 
 
 Recovering from addiction requires commitment and that is exactly what we're trying to teach here.
