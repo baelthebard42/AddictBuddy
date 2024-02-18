@@ -14,7 +14,7 @@ const Layout = () => {
       {!relapse && <Navbar />}
       <main
         className={`min-h-screen grid place-items-center bg-neutral-900 ${
-          !relapse ? `pt-20` : `bg-red-100`
+          !relapse ? `pt-20` : ``
         }`}
       >
         {token ? <Outlet /> : <Navigate to="/" />}

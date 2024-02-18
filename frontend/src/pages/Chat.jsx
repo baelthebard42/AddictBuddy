@@ -104,19 +104,29 @@ const Chat = () => {
     ) : (
       chatLog.map(({ user, message }, index) => (
         <div
-          key={index}
-          className={`py-6 flex text-white ${
-            user === "buddy"
-              ? relapse
-                ? `bg-red-500`
-                : `bg-purple-600 `
-              : `text-gray-100`
+          className={`flex items-center ${
+            user === "buddy" ? `self-start` : `self-end`
           } `}
         >
-          <div className="uppercase font-bold w-24 pl-10 text-center">
-            {user}
+          <div className="uppercase font-bold w-9 h-9 basis-9 flex-grow-0 flex-shrink-0 rounded-full bg-black text-white mx-2 flex items-center justify-center">
+            {user === "buddy" ? (
+              <img src="/images/buddy.png" className="rounded-full w-9 h-9" />
+            ) : (
+              <img src="/images/user.jpg" className="rounded-full h-9" />
+            )}
           </div>
-          <div className="px-10">{message}</div>
+          <div
+            key={index}
+            className={`rounded-2xl max-w-[36rem] text-white p-3 m-1 ${
+              user === "buddy"
+                ? relapse
+                  ? `bg-red-600`
+                  : `bg-purple-600`
+                : `bg-neutral-600 text-gray-100`
+            } `}
+          >
+            {message}
+          </div>
         </div>
       ))
     );
@@ -137,15 +147,17 @@ const Chat = () => {
       <div className="py-3 text-left flex flex-col pb-20">
         {conversationEl}
         {isLoading && (
-          <div
-            className={`py-6 flex text-white ${
-              relapse ? `bg-red-500` : `bg-purple-600`
-            }`}
-          >
-            <div className="uppercase font-bold w-24 pl-10 text-center">
-              Buddy
+          <div className="flex items-center self-start">
+            <div className="uppercase font-bold w-9 h-9 basis-9 flex-grow-0 flex-shrink-0 rounded-full bg-black text-white mx-2 flex items-center justify-center">
+              <img src="/images/buddy.png" className="rounded-full w-9 h-9" />
             </div>
-            <div className="px-10 text-white">Buddy is thinking...</div>
+            <div
+              className={`rounded-2xl max-w-[36rem] text-white p-3 m-1 ${
+                relapse ? `bg-red-500` : `bg-purple-600`
+              }`}
+            >
+              Buddy is typing...
+            </div>
           </div>
         )}
         <div ref={lastMessageRef} />
