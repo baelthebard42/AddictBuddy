@@ -122,7 +122,7 @@ const Chat = () => {
                 ? relapse
                   ? `bg-[#4f1317]`
                   : `bg-purple-600`
-                : `bg-neutral-600 text-gray-100`
+                : `bg-neutral-800 text-gray-100`
             } `}
           >
             {message}
