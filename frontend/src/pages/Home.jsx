@@ -20,16 +20,16 @@ const Home = () => {
   }, [data, isSuccess, isLoading, isError, error]);
 
   return (
-    <section className="text-gray-600 body-font min-h-full flex items-center">
+    <section className="text-gray-100 body-font min-h-full flex items-center bg-neutral-900">
       {data?.streak !== 0 && (
         <div className="container mx-auto flex px-5 items-center justify-center flex-col">
-          <div className="flex items-center leading-[14rem] text-black">
+          <div className="flex items-center leading-[14rem] text-gray-200">
             <span className="text-7xl">&#x1F525;</span>
             <span className="text-[12rem]">{data?.streak}</span>
             <span className="text-7xl">&#x1F525;</span>
           </div>
           <div className="text-center lg:w-3/4 w-full">
-            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-100">
               Daily Chat Streak
             </h1>
             <p className="mb-8 leading-relaxed">
@@ -51,13 +51,13 @@ const Home = () => {
       )}
       {data?.streak === 0 && (
         <div className="container mx-auto flex px-5 items-center justify-center flex-col">
-          <div className="flex items-center leading-[14rem] text-black">
+          <div className="flex items-center leading-[14rem] text-gray-200">
             <span className="text-3xl pr-2">&#x1F622;</span>
             <span className="text-[12rem]">{data?.streak}</span>
             <span className="text-3xl pl-2">&#x1F622;</span>
           </div>
           <div className="text-center lg:w-3/4 w-full">
-            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-100">
               Daily Chat Streak
             </h1>
             <p className="mb-8 leading-relaxed">
@@ -71,7 +71,7 @@ const Home = () => {
                 </button>
               </Link>
               <Link to="/accomplishments">
-                <button className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0 py-2 uppercase font-semibold px-6 focus:outline-none hover:bg-gray-300 rounded text-lg">
+                <button className="ml-4 inline-flex text-neutral-900 bg-gray-200 border-0 py-2 uppercase font-semibold px-6 focus:outline-none hover:bg-gray-300 rounded text-lg">
                   Accomplishments
                 </button>
               </Link>

@@ -8,13 +8,13 @@ const Navbar = () => {
   const toggleMenu = () => setMenuShown((prevState) => !prevState);
 
   return (
-    <header className="text-gray-600 body-font h-16 xs:h-20 shadow-md w-full fixed z-10 bg-white">
+    <header className="body-font h-16 xs:h-20 shadow-md w-full fixed z-10 bg-neutral-900">
       <div className="container mx-auto flex flex-wrap p-5 justify-center items-center">
         <Link>
           <Logo />
         </Link>
         <nav
-          className={`md:ml-auto flex-wrap items-center text-base duration-200 justify-center hidden xs:flex flex-col md:flex-row h-screen bg-purple-600 md:h-auto top-0 left-full absolute gap-12 md:gap-0 md:static md:bg-transparent w-52 md:w-auto text-white md:text-gray-600 ${
+          className={`md:ml-auto flex-wrap items-center text-base duration-200 justify-center hidden xs:flex flex-col md:flex-row h-screen bg-purple-600 md:h-auto top-0 left-full absolute gap-12 md:gap-0 md:static md:bg-transparent w-52 md:w-auto text-white md:text-gray-100 ${
             menuShown ? `-translate-x-full md:translate-x-0` : ``
           }`}
         >
@@ -56,9 +56,10 @@ const Navbar = () => {
         <button
           type="button"
           onClick={toggleMenu}
-          className={`xs:inline-flex hidden items-center gap-2 ml-auto rounded-lg bg-gray-200 px-2.5 py-2 text-sm font-semibold text-gray-500 ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base md:hidden`}
+          className={`xs:inline-flex hidden items-center gap-2 ml-auto rounded-lg bg-gray-200 px-2.5 py-2 text-sm font-semibold text-black ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base md:hidden`}
         >
           <svg
+            style={{ color: "black" }}
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
             viewBox="0 0 20 20"

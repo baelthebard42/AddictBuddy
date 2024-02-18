@@ -71,10 +71,10 @@ const Login = () => {
   return (
     <div
       className="min-h-screen flex items-center"
-      style={{ backgroundImage: "linear-gradient(115deg, #9F7AEA, #FEE2FE)" }}
+      style={{ backgroundImage: "linear-gradient(115deg, #09000B, #1F0027)" }}
     >
       <div className="container mx-auto">
-        <div className="flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden">
+        <div className="flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-neutral-900 rounded-xl mx-auto shadow-lg overflow-hidden">
           <div
             className="w-full lg:w-1/2 lg:pb-20 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center"
             style={{ backgroundImage: 'url("images/registerBackground.jpg")' }}
@@ -92,10 +92,10 @@ const Login = () => {
               </p>
             </div>
           </div>
-          <div className="w-full lg:w-1/2 p-12">
+          <div className="w-full lg:w-1/2 p-12 text-gray-100">
             <h2 className="text-3xl mb-4 uppercase font-semibold">Login</h2>
             <p className="mb-4">Start using your buddy by logging in.</p>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="text-neutral-900">
               <div className="mt-5">
                 <input
                   type="text"

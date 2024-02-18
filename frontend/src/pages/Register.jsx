@@ -84,12 +84,12 @@ const Register = () => {
   return (
     <div
       className="min-h-screen flex items-center"
-      style={{ backgroundImage: "linear-gradient(115deg, #9F7AEA, #FEE2FE)" }}
+      style={{ backgroundImage: "linear-gradient(115deg, #09000B, #1F0027)" }}
     >
       <div className="container mx-auto">
-        <div className="flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden">
+        <div className="flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-neutral-900 rounded-xl mx-auto shadow-lg overflow-hidden">
           <div
-            className="w-full lg:w-1/2 lg:pb-20 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center"
+            className="w-full lg:w-1/2 lg:pb-20 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center "
             style={{ backgroundImage: 'url("images/registerBackground.jpg")' }}
           >
             <h1 className="text-white text-3xl mb-3 font-semibold uppercase">
@@ -105,12 +105,12 @@ const Register = () => {
               </p>
             </div>
           </div>
-          <div className="w-full lg:w-1/2 p-12">
+          <div className="w-full lg:w-1/2 p-12 text-gray-100">
             <h2 className="text-3xl mb-4 uppercase font-semibold">Register</h2>
             <p className="mb-3">
               Create your account. It's free and only takes a minute.
             </p>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="text-neutral-900">
               <div className="mt-3">
                 <input
                   type="text"
@@ -161,8 +161,8 @@ const Register = () => {
                   {formErrors.confirmPassword}
                 </p>
               </div>
-              <div className="mt-2">
-                <p className="text-gray-600 font-bold uppercase">
+              <div className="mt-2 text-gray-100">
+                <p className="text-gray-300 font-bold uppercase">
                   Type of addiction
                 </p>
                 <div className="flex flex-col lg:flex-row lg:justify-between mt-1">
