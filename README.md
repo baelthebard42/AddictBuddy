@@ -18,7 +18,8 @@ AddictBuddy is an AI powered web platform designed to get track your two major t
 1. **Meet Buddy, your AI friend** : Buddy is an AI chatbot specially designed to help people recovering or wanting to recover from certain types of addictions. Talk to him about your issues, coping mechanisms,
    relationships and everything else you cannot discuss even with people close to you. He gives you answers with proper psychological interpretations and readymade suggestions to cope with addictions.
    
-![Buddy, Chat](https://cdn.discordapp.com/attachments/1010884441478025318/1202304197291413574/image.png?ex=65ccf80a&is=65ba830a&hm=e9a1eddb280d510a7e7b7a1382bc4f64dcbcff1210dd12df730f4a89b477c79d&)
+![Screenshot 2024-02-18 223408](https://github.com/baelthebard42/AddictBuddy/assets/105338372/9cedba25-48ad-4615-a082-0ef74b973a81)
+
 
 2. **Buddy generates journal for you** : Based on what you talk with Buddy, he generates a series of paragraphs, what we call "accomplishments for each day". You can view each day's journal in the accomplishment section each day !. Keep talking
    with him view those accomplishments to track your progress. For example :
@@ -29,23 +30,34 @@ AddictBuddy is an AI powered web platform designed to get track your two major t
 
     You and only you will have access to your accomplishments.
    
-![Buddy, Accomplishments](https://cdn.discordapp.com/attachments/1010884441478025318/1202304851178954875/image.png?ex=65ccf8a6&is=65ba83a6&hm=61d00f7bb0db47efea43f4ef68a6bbf92b4c1e7dee766228e7860dd0df635061&)
+![Screenshot 2024-02-18 223512](https://github.com/baelthebard42/AddictBuddy/assets/105338372/407efb1b-42c3-4d24-b70b-88a7e78c3c97)
+
 
 3. **Buddy has a relapse mode** : It is common for recovering addicts to fall back to their usual ways at minor inconveniences. So, Buddy has a relapse mode to be used if the users get a sign that they are having a relapse. This mode forces user to think for themselves with triggering responses.
 
-![Buddy, Relapse](https://cdn.discordapp.com/attachments/1010884441478025318/1202304317697036318/image.png?ex=65ccf827&is=65ba8327&hm=1ee0af447b3401a7a0a8fb6325001bc5cc3c2fd1c987f35b121a621d4d44b970&)
+   ![Screenshot 2024-02-18 223834](https://github.com/baelthebard42/AddictBuddy/assets/105338372/ec8c7963-5ad2-498a-9821-90174bbb6ea5)
+
+
 
 4. **Streak maintainence** : To make sure the users visit Buddy daily, there is a streak feature. The higher the streak, more progress and accomplishments and more Buddy knows you. Missing a streak results in it's
    reset and deletion of all the accomplishments thus far.
 
+   ![Screenshot 2024-02-18 223834](https://github.com/baelthebard42/AddictBuddy/assets/105338372/75ac8066-d121-49dd-8e05-1cf7fe594fee)
+
+
 Recovering from addiction requires commitment and that is exactly what we're trying to teach here.
 
-![Buddy, Streak](https://cdn.discordapp.com/attachments/1010884441478025318/1202303283922997288/image.png?ex=65ccf730&is=65ba8230&hm=228c26766104db62127146a802ae4e0e6061d01e55bfdc183a3d94a986745de8&)
+
+
 
 # Demo
 
 
-https://github.com/baelthebard42/AddictBuddy/assets/105338372/7ed6eb60-eeea-4539-8e6e-cb6c2cfb66a6
+
+
+https://github.com/baelthebard42/AddictBuddy/assets/105338372/7e1f8e3b-acb7-4509-ad76-cba0e25f8057
+
+
 
 
 
