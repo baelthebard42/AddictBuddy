@@ -15,7 +15,7 @@ const Relapse = () => {
       <button
         className={`p-5 ${
           relapse ? `hidden` : ` block`
-        } rounded-full hover:p-6 duration-200 bg-red-600`}
+        } rounded-full hover:p-6 duration-200 bg-[#ad1733]`}
         onClick={handleRelapse}
       >
         <svg

@@ -120,7 +120,7 @@ const Chat = () => {
             className={`rounded-2xl max-w-[36rem] text-white p-3 m-1 ${
               user === "buddy"
                 ? relapse
-                  ? `bg-red-600`
+                  ? `bg-[#4f1317]`
                   : `bg-purple-600`
                 : `bg-neutral-600 text-gray-100`
             } `}
@@ -134,7 +134,7 @@ const Chat = () => {
   return (
     <section className={`container text-gray-900 ${relapse ? `pt-10` : ``}`}>
       {relapse && (
-        <div className="fixed top-0 left-0 w-full h-10 bg-red-700 flex justify-center items-center">
+        <div className="fixed top-0 left-0 w-full h-10 bg-[#ad1733] flex justify-center items-center">
           <p className="text-white font-semibold uppercase">Relapse Mode</p>
           <button
             className="ml-4 inline-flex text-black bg-white border-0 py-1 uppercase font-semibold px-2 focus:outline-none hover:bg-gray-200 rounded"
@@ -153,7 +153,7 @@ const Chat = () => {
             </div>
             <div
               className={`rounded-2xl max-w-[36rem] text-white p-3 m-1 ${
-                relapse ? `bg-red-500` : `bg-purple-600`
+                relapse ? `bg-[#4f1317]` : `bg-purple-600`
               }`}
             >
               Buddy is typing...
