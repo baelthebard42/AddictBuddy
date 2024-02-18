@@ -53,7 +53,7 @@ Recovering from addiction requires commitment and that is exactly what we're try
 
 # Demo
 
-
+let's see what we did. Make sure you turn the sound on while watching. 
 
 
 https://github.com/baelthebard42/AddictBuddy/assets/105338372/7e1f8e3b-acb7-4509-ad76-cba0e25f8057
