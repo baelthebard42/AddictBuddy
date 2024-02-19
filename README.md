@@ -1,3 +1,14 @@
+# Table of Contents 
+
+ 1. Problem Statement : [Addiction as a global problem](#addiction-as-a-global-problem)
+ 2. Our Solution : [AddictBuddy](#addictbuddy)
+ 3. [Demo](#demo)
+ 4. [Running the app](#running-the-application)
+ 5. [Dependencies](#dependencies)
+
+
+
+
 # Addiction as a global problem
 
 American Society of Addiction Medicine (ASAM) defines addiction as : " a primary, chronic disease of brain reward, motivation, memory, and related circuitry. Dysfunction in these circuits leads to characteristic biological, psychological, social, and spiritual manifestations"
