@@ -1,7 +1,7 @@
 # Table of Contents 
 
- 1. Problem Statement : [Addiction as a global problem](#addiction-as-a-global-problem)
- 2. Our Solution : [AddictBuddy](#addictbuddy)
+ 1. [Addiction as a global problem](#addiction-as-a-global-problem)
+ 2. [AddictBuddy](#addictbuddy)
  3. [Demo](#demo)
  4. [Running the app](#running-the-application)
  5. [Dependencies](#dependencies)
