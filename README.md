@@ -24,12 +24,29 @@ with people of almost every age addicted to either substances, screens or games.
 
 # AddictBuddy
 
-AddictBuddy is an AI powered web platform designed to get track your two major types of addictions: Substance addiction and Social media addiction. The following are the major features:
+AddictBuddy is an AI powered web platform designed to get track your two major types of addictions: Substance addiction and Social media addiction.
+
+
+   ### Login Page
+
+   ![Screenshot 2024-02-20 114500](https://github.com/baelthebard42/AddictBuddy/assets/105338372/3a7e9c2a-0cf8-414a-b5a5-0be3a8918b8e)
+
+
+   ### Register Page
+
+   ![Screenshot 2024-02-20 114517](https://github.com/baelthebard42/AddictBuddy/assets/105338372/939d37e0-ea82-4ee5-9485-1af4dc199c10)
+
+
+
+
+
+
+## Features:
 
 1. **Meet Buddy, your AI friend** : Buddy is an AI chatbot specially designed to help people recovering or wanting to recover from certain types of addictions. Talk to him about your issues, coping mechanisms,
    relationships and everything else you cannot discuss even with people close to you. He gives you answers with proper psychological interpretations and readymade suggestions to cope with addictions.
    
-![Screenshot 2024-02-18 223408](https://github.com/baelthebard42/AddictBuddy/assets/105338372/9cedba25-48ad-4615-a082-0ef74b973a81)
+   ![Screenshot 2024-02-18 223408](https://github.com/baelthebard42/AddictBuddy/assets/105338372/9cedba25-48ad-4615-a082-0ef74b973a81)
 
 
 2. **Buddy generates journal for you** : Based on what you talk with Buddy, he generates a series of paragraphs, what we call "accomplishments for each day". You can view each day's journal in the accomplishment section each day !. Keep talking
@@ -41,12 +58,12 @@ AddictBuddy is an AI powered web platform designed to get track your two major t
 
     You and only you will have access to your accomplishments.
    
-![Screenshot 2024-02-18 223512](https://github.com/baelthebard42/AddictBuddy/assets/105338372/407efb1b-42c3-4d24-b70b-88a7e78c3c97)
+    ![Screenshot 2024-02-18 223512](https://github.com/baelthebard42/AddictBuddy/assets/105338372/407efb1b-42c3-4d24-b70b-88a7e78c3c97)
 
 
 3. **Buddy has a relapse mode** : It is common for recovering addicts to fall back to their usual ways at minor inconveniences. So, Buddy has a relapse mode to be used if the users get a sign that they are having a relapse. This mode forces user to think for themselves with triggering responses.
 
-   ![Screenshot 2024-02-18 223834](https://github.com/baelthebard42/AddictBuddy/assets/105338372/ec8c7963-5ad2-498a-9821-90174bbb6ea5)
+    ![Screenshot 2024-02-18 223834](https://github.com/baelthebard42/AddictBuddy/assets/105338372/ec8c7963-5ad2-498a-9821-90174bbb6ea5)
 
 
 
@@ -54,7 +71,7 @@ AddictBuddy is an AI powered web platform designed to get track your two major t
    reset and deletion of all the accomplishments thus far.
 
    
-  ![Screenshot 2024-02-18 223740](https://github.com/baelthebard42/AddictBuddy/assets/105338372/37423702-9763-471f-8291-4a7391e84f9e)
+    ![Screenshot 2024-02-18 223740](https://github.com/baelthebard42/AddictBuddy/assets/105338372/37423702-9763-471f-8291-4a7391e84f9e)
 
 
 Recovering from addiction requires commitment and that is exactly what we're trying to teach here.
